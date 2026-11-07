@@ -25,6 +25,7 @@ index=main sourcetype=WinEventLog:Security EventCode=4625
 index=main sourcetype=WinEventLog:Security
 | stats count by EventCode
 | sort - count
+
 6. CPU Performance Monitoring
 index=main sourcetype="Perfmon:CPU Load"
 | timechart span=5m avg(Value) by counter
