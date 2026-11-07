@@ -1,0 +1,35 @@
+PROJECT 1: DHCP TRAFFIC INSIGHTS
+
+1. DHCP Lease Time Analysis
+index=dhcp sourcetype=dhcp_logs
+| table _time client_ip lease_time
+
+2. Client IP and MAC Address Mapping
+index=dhcp sourcetype=dhcp_logs
+| table _time client_ip client_mac
+
+3. Inspect Raw DHCP Events
+index=dhcp sourcetype=dhcp_logs
+| head 10
+
+4. Total DHCP Requests
+index=dhcp sourcetype=dhcp_logs
+| stats count as total_dhcp_requests
+
+5. DHCP Requests Over Time
+index=dhcp sourcetype=dhcp_logs
+| timechart span=1h count
+
+6. Top Clients by Request Count
+index=dhcp sourcetype=dhcp_logs
+| stats count as request_count by client_mac
+| sort - request_count
+
+7. Most Frequently Assigned IP Addresses
+index=dhcp sourcetype=dhcp_logs
+| stats count as assignment_count by client_ip
+| sort - assignment_count
+
+8. Unique MAC Addresses Over Time
+index=dhcp sourcetype=dhcp_logs
+| timechart span=1h dc(client_mac) as unique_mac_addresses

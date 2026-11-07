@@ -8,7 +8,7 @@ A collection of hands-on cybersecurity projects developed using **Splunk Enterpr
 | Project | Focus | Link |
 |---|---|---|
 | DHCP Traffic Insights — Log Monitoring & Dashboard (Oct 2025) | DHCP log analysis and network visibility | [View Project 1](./DHCP-Traffic-Insights/)
-| Cloud & Network Security Intelligence Dashboard (Nov 2025) | Authentication monitoring, network traffic analysis, and cloud security visibility | [View Project 2](./Cloud-Network-Security-Intelligence/) |
+| Cloud & Network Security Intelligence Dashboard (Nov 2025) | Authentication monitoring, network traffic analysis, and cloud security visibility | [View Project 2](./Cloud-And-Network-Security-Intelligence/) |
 | Windows EDR-Style Monitoring & Brute-Force Detection (Feb 2026) | Windows endpoint monitoring and security event detection | [View Project 3](./Windows-EDR-Brute-Force-Detection) |
 
 ## Tools & Technologies

@@ -1,0 +1,36 @@
+
+PROJECT 3: WINDOWS EDR-STYLE MONITORING
+
+1. Explore Windows Events
+index=main
+
+2. Search Windows Security Logs
+index=main sourcetype=WinEventLog:Security
+
+3. Brute-Force Detection
+- EventCode 4625 = Failed Logon
+- Group events into 3-minute windows
+- Trigger when more than 3 failures occur
+
+index=main sourcetype=WinEventLog:Security EventCode=4625
+| bin _time span=3m
+| stats count by _time, Account_Name
+| where count > 3
+
+4. Failed Logons by Account
+index=main sourcetype=WinEventLog:Security EventCode=4625
+| stats count as failed_logons by Account_Name
+| sort - failed_logons
+
+5. Security Event ID Analysis
+index=main sourcetype=WinEventLog:Security
+| stats count by EventCode
+| sort - count
+
+6. CPU Performance Monitoring
+index=main sourcetype="Perfmon:CPU Load"
+| timechart span=5m avg(Value) by counter
+
+7. Network Interface Monitoring
+index=main sourcetype="Perfmon:Network Interface"
+| timechart span=5m avg(Value) by counter

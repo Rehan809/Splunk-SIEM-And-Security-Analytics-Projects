@@ -1,0 +1,39 @@
+
+PROJECT 2: CLOUD & NETWORK SECURITY INTELLIGENCE
+
+1. Authentication Status Over Time
+index=all sourcetype=csv
+| timechart count by Status
+
+2. Protocol Usage Over Time
+index=csl sourcetype=csv
+| timechart count by Protocol
+
+3. Top Users by Login Attempts
+index=all sourcetype=csv
+| stats count as login_attempts by User
+| sort - login_attempts
+| head 10
+
+4. Authentication Activity by Status
+index=all sourcetype=csv
+| stats count by Status
+
+5. Network Traffic by Protocol
+index=csl sourcetype=csv
+| stats count by Protocol
+
+6. Source-to-Destination Communication
+index=csl sourcetype=csv
+| stats count by Source_IP Destination_IP
+| sort - count
+
+7. Unusual Destination Ports
+index=csl sourcetype=csv DestinationPort=*
+| stats count by SourceIP DestinationIP DestinationPort Protocol
+| sort + count
+| head 20
+
+8. Cloud Service Traffic Over Time
+index=csl sourcetype=csv
+| timechart span=1d count by Service
